@@ -27,7 +27,7 @@ https://studentretention-prh2cmrdhpqjjap9ng39cd.streamlit.app/
 
 ---
 
-## 🧠 Model Details
+## Model Details
 A logistic regression model was trained using institutional student data.  
 Key features include:
 
@@ -42,6 +42,14 @@ Key features include:
 
 The model is serialized using `joblib` and loaded directly inside the Streamlit app.
 
+## Tableau Visualizations
+
+## 📈 Tableau Work (In Progress)
+
+I am actively developing Tableau dashboards to complement the Streamlit app. These dashboards explore GPA trends, alerts, advising engagement, and retention patterns in a visual and interactive format.
+
+Screenshots and links to Tableau dashboards will be added as this portion of the project continues to evolve.
+
 ##  Technologies Used
 - Python
 - pandas
@@ -51,6 +59,18 @@ The model is serialized using `joblib` and loaded directly inside the Streamlit 
 - joblib
 - Excel (data cleaning and preprocessing)
 - Tableau (data visualization and dashboard development)
+
+## Work in Progress
+
+This project is actively being expanded. Upcoming additions include:
+
+- More Tableau dashboards
+- Additional EDA visualizations
+- ROC curve, confusion matrix, and feature importance plots
+- A downloadable advising report
+- Enhanced documentation
+
+I will continue updating this repository as new features and visualizations are completed. 
 
 ## Contact
 Created by Sydney Clapperton  
