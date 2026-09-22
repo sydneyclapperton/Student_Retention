@@ -23,7 +23,7 @@ The interactive dashboard allows users to:
 
 The app is designed for deployment on **Streamlit Cloud**.
 
-https://studentretention-prh2cmrdhpqjjap9ng39cd.streamlit.app/
+[Launch the Streamlit App](https://studentretention-prh2cmrdhpqjjap9ng39cd.streamlit.app/) 
 
 ---
 
@@ -61,17 +61,18 @@ Screenshots and links to Tableau dashboards will be added as this portion of the
 - Tableau (data visualization and dashboard development)
 
 ## Work in Progress
-
 This project is actively being expanded. Upcoming additions include:
-
 - More Tableau dashboards
 - Adding Major Category impact on retention rates: initial exploratory analysis indicates there may be some affect on retention based on what degree program a student is pursuing.
 - Additional EDA visualizations
 - ROC curve, confusion matrix, and feature importance plots
-- A downloadable advising report
 - Enhanced documentation
 
 I will continue updating this repository as new features and visualizations are completed. 
+
+## Environment
+Python 3.11
+Dependencies are listed in requirements.txt.
 
 ## Contact
 Created by Sydney Clapperton  
