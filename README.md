@@ -23,6 +23,7 @@ Variables included:
 - Full-Time Status
 - Advising Appointments
 - No-Shows
+- Alerts
 - Age Group
 - Gender
 - Major Category
@@ -40,7 +41,7 @@ The app is designed for deployment on **Streamlit Cloud**.
 [Launch the Streamlit App](https://studentretention-prh2cmrdhpqjjap9ng39cd.streamlit.app/) 
 ## Application Preview
 ### Student Retention Prediction Tool
-
+![Student Retention Prediction App Preview](./images/Student_Retention_App_Preview.png)
 ---
 
 ## Model Details
@@ -58,13 +59,26 @@ Key features include:
 
 The model is serialized using `joblib` and loaded directly inside the Streamlit app.
 
-## Tableau Visualizations
+## Exploratory Data Analysis & Visualizations
+The following visualizations were developed to explore factors associated with student retention and to identify patterns later incorporated into the predictive model.
+### Overall Retention Rate
+![Overall Retention](./images/Overall_Retention.png)
 
-## 📈 Tableau Work (In Progress)
+**Finding:** Approximately 66% of student-term observations were retained to the following primary semester.
 
-I am actively developing Tableau dashboards to complement the Streamlit app. These dashboards explore GPA trends, alerts, advising engagement, and retention patterns in a visual and interactive format.
+---
+### Retention by Cumulative GPA and Full-Time Status
+![Retention by Cumuluative GPA and Full-time](./images/Retention_by_Cumul_GPA_and_FT.png)
 
-Screenshots and links to Tableau dashboards will be added as this portion of the project continues to evolve.
+**Finding:** Retention increased substantially as cumulative GPA increased. Full-time students consistently demonstrated higher retention rates than part-time students across nearly all GPA ranges.
+
+---
+### Retention by Credit Load
+![Retention by Credit Load](./images/Retention_by_Credit_Load.png)
+
+**Finding:** Students enrolled in higher credit loads generally demonstrated stronger retention outcomes.
+
+---
 
 ##  Technologies Used
 - Python
@@ -76,13 +90,25 @@ Screenshots and links to Tableau dashboards will be added as this portion of the
 - Excel (data cleaning and preprocessing)
 - Tableau (data visualization and dashboard development)
 
-## Work in Progress
-This project is actively being expanded. Upcoming additions include:
-- More Tableau dashboards
-- Adding Major Category impact on retention rates: initial exploratory analysis indicates there may be some affect on retention based on what degree program a student is pursuing.
-- Additional EDA visualizations
-- ROC curve, confusion matrix, and feature importance plots
-- Enhanced documentation
+## Model Performance
+Performance metrics will be added as model evaluation is finalized.
+Planned metrics include:
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
+- Confusion Matrix
+  
+## Future Enhancements:
+- Interactive Tableau dashboards
+- Major Category retention analysis
+- Additional exploratory visualizations
+- ROC curve and confusion matrix
+- Feature importance visualizations
+- Enhanced project documentation
+
+Screenshots and links to Tableau dashboards will be added as this project continues to evolve.
 
 I will continue updating this repository as new features and visualizations are completed. 
 
