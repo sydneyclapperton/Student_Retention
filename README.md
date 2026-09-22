@@ -65,6 +65,7 @@ Screenshots and links to Tableau dashboards will be added as this portion of the
 This project is actively being expanded. Upcoming additions include:
 
 - More Tableau dashboards
+- Adding Major Category impact on retention rates: initial exploratory analysis indicates there may be some affect on retention based on what degree program a student is pursuing.
 - Additional EDA visualizations
 - ROC curve, confusion matrix, and feature importance plots
 - A downloadable advising report
