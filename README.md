@@ -13,6 +13,20 @@ The goal is to:
 - Support early intervention and advising strategies
 - Demonstrate applied machine learning skills in a real-world context
 
+## Dataset
+This project was built using 13,567 anonymized student-term observations collected from a Student Information System (SIS) and EAB Navigate.
+To protect student privacy, all student identifiers and institutional identifiers were removed prior to analysis.
+Variables included:
+- Cumulative GPA
+- Term GPA
+- Credit Load
+- Full-Time Status
+- Advising Appointments
+- No-Shows
+- Age Group
+- Gender
+- Major Category
+- Retained Next Semester
 
 ## Streamlit App
 The interactive dashboard allows users to:
@@ -24,6 +38,8 @@ The interactive dashboard allows users to:
 The app is designed for deployment on **Streamlit Cloud**.
 
 [Launch the Streamlit App](https://studentretention-prh2cmrdhpqjjap9ng39cd.streamlit.app/) 
+## Application Preview
+### Student Retention Prediction Tool
 
 ---
 
