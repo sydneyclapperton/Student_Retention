@@ -33,7 +33,27 @@ term_gpa = st.sidebar.number_input("Term GPA", min_value=0.0, max_value=4.0, val
 credit_load = st.sidebar.number_input("Credit Load", min_value=0, max_value=30, value=12)
 advising = st.sidebar.number_input("Advising Appointments", min_value=0, max_value=20, value=1)
 alerts = st.sidebar.number_input("Alerts", min_value=0, max_value=20, value=0)
-
+no_shows = st.sidebar.number_input(
+    "No Shows",
+    min_value=0,
+    max_value=20,
+    value=0
+)
+ 
+major_category = st.sidebar.selectbox(
+    "Major Category",
+    [
+        "Health Professions",
+        "Computer Science",
+        "No program",
+        "Business",
+        "STEM",
+        "Education",
+        "Technical Studies/Trades",
+        "General Studies",
+        "Liberal Arts"
+    ]
+)
 # Calculate full-time internally (not shown to user)
 full_time = "1" if credit_load >= 12 else "0"
 
@@ -61,7 +81,9 @@ input_data = pd.DataFrame({
     "Alerts": [alerts],
     "Credit_Load": [credit_load],
     "Full_Time": [full_time], #internal
-    "Term_GPA_bin": [term_gpa_bin]
+    "Term_GPA_bin": [term_gpa_bin],
+    "No_Shows": [no_shows],
+    "Major_Category": [major_category]
 })
 
 # Predict
