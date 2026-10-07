@@ -1,10 +1,7 @@
 """
 Running analysis on student retention data taken from a community college. The data has the following fields: Term, Credit_Load, Full_Time, Term_GPA, Advising_Appointments, No_Shows, Alerts, Retained_Next_Semester, Major_Category, Cumul_GPA, Gender, Age
 """
-
 import pandas as pd
-import numpy as np
-
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
@@ -14,12 +11,15 @@ from sklearn.metrics import (
     classification_report,
     confusion_matrix,
     roc_auc_score,
-    RocCurveDisplay)
+    RocCurveDisplay,
+    ConfusionMatrixDisplay)
+import matplotlib.pyplot as plt
 from imblearn.over_sampling import RandomOverSampler
 import joblib
 
 #Load dataset
-df = pd.read_excel("Student_Data.xlsx")
+#dataset not included in repository due to student privacy considerations
+df = pd.read_excel("Data.xlsx") 
 
 #Correcting column names
 df = df.rename(columns={"Major Category": "Major_Category", "Cumul GPA ":"Cumul_GPA", "Retained_Next_Semester":"Retained"})
@@ -78,13 +78,13 @@ df["Age_bin"] = pd.cut(
     include_lowest=True
 )
 
-df.head()
 
 df["Gender"] = df["Gender"].astype(str)
 df["Age_bin"] = df["Age_bin"].astype(str)
 df["Cumul_GPA_bin"] = df["Cumul_GPA_bin"].astype(str)
 df["Term_GPA_bin"] = df["Term_GPA_bin"].astype(str)
 df["Full_Time"] = df["Full_Time"].astype(str)
+df["Major_Category"] = df["Major_Category"].astype(str)
 
 #Define features and target
 target = "Retained"
@@ -98,18 +98,29 @@ features = [
     "Alerts",
     "Credit_Load",
     "Full_Time",
-    "Term_GPA_bin"
+    "Term_GPA_bin",
+    "No_Shows",
+    "Major_Category"
 ]
 df = df.dropna(subset=features)
 X = df[features]
 y = df[target]
 
-#Oversampling due to imbalance in non-retained students vs retained
+#Create splits for training/testing
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.25,
+    random_state=42,
+    stratify=y
+)
+
+#Oversample training data only
 ros = RandomOverSampler(random_state=42)
-X_resampled, y_resampled = ros.fit_resample(X, y)
+X_train, y_train = ros.fit_resample(X_train, y_train)
 
 #Identify categorical columns
-categorical_cols = ["Gender", "Age_bin", "Cumul_GPA_bin", "Term_GPA_bin", "Full_Time"]
+categorical_cols = ["Gender", "Age_bin", "Cumul_GPA_bin", "Term_GPA_bin", "Full_Time", "Major_Category"]
 numeric_cols = [col for col in features if col not in categorical_cols]
 
 preprocess = ColumnTransformer(
@@ -119,12 +130,9 @@ preprocess = ColumnTransformer(
 
 model = Pipeline(steps=[
     ("preprocess", preprocess),
-    ("logreg", LogisticRegression(max_iter=500))
+    ("logreg", LogisticRegression(max_iter=1000, C = 0.01))
 ])
 
-#Create splits for training/testing
-X_train, X_test, y_train, y_test = train_test_split(
-    X_resampled, y_resampled, test_size=0.25, random_state=42)
 
 model.fit(X_train, y_train)
 
@@ -136,10 +144,20 @@ print(classification_report(y_test, y_pred))
 
 print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
+ConfusionMatrixDisplay.from_predictions(
+    y_test,
+    y_pred,
+    cmap="Blues"
+    )
+plt.title("Student Retention Confusion Matrix")
+plt.savefig("confusion_matrix.png")
+plt.show()
 
 print("ROC AUC Score:", roc_auc_score(y_test, y_prob))
-
 RocCurveDisplay.from_predictions(y_test, y_prob)
+plt.title("Student Retention ROC Curve")
+plt.savefig("roc_curve.png")
+plt.show()
 
 #Extract logistic regression formula
 
