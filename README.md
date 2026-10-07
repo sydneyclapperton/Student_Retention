@@ -13,6 +13,13 @@ The goal is to:
 - Support early intervention and advising strategies
 - Demonstrate applied machine learning skills in a real-world context
 
+The final model achieved:
+
+- 72% Accuracy
+- 0.764 ROC-AUC
+
+These results demonstrate moderate predictive power for identifying students who may be at risk of not returning the following semester. Logistic Regression outperformed a Random Forest benchmark model during testing and was selected as the final model for deployment.
+
 ## Dataset
 This project was built using 13,567 anonymized student-term observations collected from a Student Information System (SIS) and EAB Navigate.
 To protect student privacy, all student identifiers and institutional identifiers were removed prior to analysis.
@@ -28,6 +35,20 @@ Variables included:
 - Gender
 - Major Category
 - Retained Next Semester
+
+## Methodology
+
+The final model pipeline consisted of:
+
+1. Data cleaning and preprocessing
+2. GPA and age-group feature engineering
+3. One-hot encoding of categorical variables
+4. Train/test split with stratification
+5. Random oversampling of the minority class
+6. Logistic regression model training
+7. Evaluation using classification metrics, confusion matrix, and ROC-AUC
+
+Alternative models including Random Forest were evaluated, with Logistic Regression demonstrating the strongest overall performance on the test dataset.
 
 ## Streamlit App
 The interactive dashboard allows users to:
@@ -48,14 +69,16 @@ The app is designed for deployment on **Streamlit Cloud**.
 A logistic regression model was trained using institutional student data.  
 Key features include:
 
-- **Cumulative GPA**
-- **Term GPA**
-- **Advising Appointments**
-- **Alerts**
-- **Credit Load**
-- **Age Group (binned)**
-- **Gender**
-- **Full-Time Status (calculated internally from credit load)**
+- Cumulative GPA
+- Term GPA
+- Advising Appointments
+- Alerts
+- No-Shows
+- Credit Load
+- Major Category
+- Age Group (binned)
+- Gender
+- Full-Time Status (calculated internally from credit load)
 
 The model is serialized using `joblib` and loaded directly inside the Streamlit app.
 
@@ -91,20 +114,27 @@ The following visualizations were developed to explore factors associated with s
 - Tableau (data visualization and dashboard development)
 
 ## Model Performance
-Performance metrics will be added as model evaluation is finalized.
-Planned metrics include:
-- Accuracy
-- Precision
-- Recall
-- F1 Score
-- ROC-AUC
-- Confusion Matrix
+
+The final logistic regression model was evaluated using an untouched test dataset after addressing class imbalance through RandomOverSampler.
+
+### Performance Metrics
+
+- Accuracy: 72%
+- ROC-AUC: 0.764
+
+Classification results indicate the model can moderately distinguish between retained and non-retained students and may be useful for identifying students who could benefit from proactive support interventions.
+
+### Confusion Matrix
+
+![Confusion Matrix](./images/confusion_matrix.png)
+
+### ROC Curve
+
+![ROC Curve](./images/roc_curve.png)
   
 ## Future Enhancements:
 - Interactive Tableau dashboards
-- Major Category retention analysis
 - Additional exploratory visualizations
-- ROC curve and confusion matrix
 - Feature importance visualizations
 - Enhanced project documentation
 
