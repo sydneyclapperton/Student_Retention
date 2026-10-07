@@ -20,6 +20,8 @@ The final model achieved:
 
 These results demonstrate moderate predictive power for identifying students who may be at risk of not returning the following semester. Logistic Regression outperformed a Random Forest benchmark model during testing and was selected as the final model for deployment.
 
+The model was deployed through a Streamlit application, allowing users to generate retention predictions through an interactive interface.
+
 ## Dataset
 This project was built using 13,567 anonymized student-term observations collected from a Student Information System (SIS) and EAB Navigate.
 To protect student privacy, all student identifiers and institutional identifiers were removed prior to analysis.
@@ -132,10 +134,25 @@ Classification results indicate the model can moderately distinguish between ret
 
 ![ROC Curve](./images/roc_curve.png)
   
+## Feature Analysis
+
+To better understand the factors influencing retention predictions, logistic regression coefficients were examined.
+
+![Feature Chart](./images/Feature_Importance.png)
+
+### Key Findings
+
+- Higher Term GPA was the strongest positive predictor of retention.
+- Students who attended more advising appointments demonstrated higher retention likelihood.
+- No-show behavior was among the strongest negative predictors of retention.
+- Students without a declared academic program were less likely to be retained.
+- Higher cumulative GPA and credit load were associated with increased retention probability.
+
+These findings improve model interpretability and highlight student characteristics and behaviors most strongly associated with retention outcomes.
+
 ## Future Enhancements:
 - Interactive Tableau dashboards
 - Additional exploratory visualizations
-- Feature importance visualizations
 - Enhanced project documentation
 
 Screenshots and links to Tableau dashboards will be added as this project continues to evolve.
