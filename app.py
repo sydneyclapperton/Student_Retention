@@ -37,9 +37,7 @@ no_shows = st.sidebar.number_input(
     "No Shows",
     min_value=0,
     max_value=20,
-    value=0
-)
- 
+    value=0)
 major_category = st.sidebar.selectbox(
     "Major Category",
     [
@@ -119,7 +117,7 @@ else:
 if advising == 0:
     risk_factors.append(("No Advising Appointments", "Students with no advising are more at risk"))
 elif advising >= 2:
-    positive_factors.append(("Advising Engagement", "Multiple advising appointments support retention"))
+    positive_factors.append(("Advising Engagement", "Advising engagement was strongly associated with retention"))
 
 # Alerts
 if alerts >= 3:
@@ -136,8 +134,25 @@ else:
 # Age bin risk patterns (based on your model coefficients)
 if age_bin in ["55-59", "60-64"]:
     risk_factors.append(("Age Group Risk", f"Age group {age_bin} has lower retention historically"))
-elif age_bin in ["20-24", "25-29", "30-34"]:
-    positive_factors.append(("Age Group Strength", f"Age group {age_bin} shows stronger retention"))
+
+# No Shows
+if no_shows >= 2:
+    risk_factors.append((
+        "Frequent No Shows",
+        "Missed appointments were strongly associated with lower retention"))
+elif no_shows == 0:
+    positive_factors.append((
+        "No Missed Appointments",
+        "Consistent appointment attendance is a positive indicator"))
+
+#Major Category
+if major_category == "No program":
+    risk_factors.append((
+        "No Program Declared",
+        "Students without a declared program showed lower retention in historical data"))
+elif major_category in [
+    "Liberal Arts","Technical Studies/Trades","STEM","Computer Science"]:
+    positive_factors.append(("Program of Study",f"{major_category} students demonstrated stronger retention historically"))
 
 # Display tables
 st.subheader("Risk Factors")
